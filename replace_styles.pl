@@ -1,16 +1,17 @@
 use strict;
 use warnings;
+use diagnostics;
 
 my $filename = 'StoriesText_2.html';
 my $filenameOut = 'StoriesText_21.html';
 
 my $data = read_file($filename);
 my $count = 0;
-$data =~ s|<style>.*</style>|<link href="lp.css" rel="stylesheet" type="text/css">\n<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">|sm;
+$data =~ s|<style>.*</style>|<link href="lp_neo.css" rel="stylesheet" type="text/css">\n<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">|sm;
 
 # Remove empty lines
-$data =~ s|<div class='story_content'><span style="font-family:'Palemonas';font-size:8.00pt;"> </span><span style="font-family:'Palemonas';font-size:10.50pt;"><br><br></span></div>||g;
-$data =~ s|<div class='story_content'><span style="font-family:'Palemonas';font-size:10.50pt;"><br></span></div>||g;
+#$data =~ s|<div class='story_content'><span style="font-family:'Palemonas';font-size:8.00pt;"> </span><span style="font-family:'Palemonas';font-size:10.50pt;"><br><br></span></div>||g;
+#$data =~ s|<div class='story_content'><span style="font-family:'Palemonas';font-size:10.50pt;"><br></span></div>||g;
 
 # Remove styles
 $data =~ s|style="font-family:'Palemonas';font-size:11.44pt;"|class="fnt11_44"|g;
@@ -38,11 +39,16 @@ $data =~ s|style="font-family:'Palemonas';font-size:10.00pt;color:#008538;text-d
 $data =~ s|style="font-family:'Palemonas-Italic';font-size:9.00pt;"|class="fnt9_0"|g;
 
 $data =~ s|style="font-family:'Palemonas';font-size:8.00pt;"|class="fnt8_0"|g;
-$data =~ s|style="font-family:'Palemonas-BoldItalic';font-size:8.00pt;"|class="fntbold8_0"|g;
+$data =~ s|style="font-family:'Palemonas-BoldItalic';font-size:8.00pt;"|class="fnt8_0 italic bold"|g;
 $data =~ s|style="font-family:'Palemonas-Italic';font-size:8.00pt;"|class="fnt8_0 italic"|g;
 
-# Replace container
-$data =~ s/'story_content'/(++$count % 2 == 0)?"'story_content_2'":$&/ge;
+# Replace story_content
+#$data =~ s/'story_content'/(++$count % 2 == 0)?"'story_content_2'":$&/ge;
+$data =~ s|<div class='story_content'>|(++$count % 2 == 0)?"<div class='col-6 story_content_2'>":"</div><div class='row'><div class='col-6 story_content'>"|ge;
+
+# Fix
+$data =~ s|<body>\s*</div>|<body><div class="container">|g;
+$data =~ s|</body>|</div></body>|g;
 
 write_file($filenameOut, $data);
 exit;
