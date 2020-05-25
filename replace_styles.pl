@@ -44,7 +44,7 @@ $data =~ s|style="font-family:'Palemonas-Italic';font-size:8.00pt;"|class="fnt8_
 
 # Replace story_content
 #$data =~ s/'story_content'/(++$count % 2 == 0)?"'story_content_2'":$&/ge;
-$data =~ s|<div class='story_content'>|(++$count % 2 == 0)?"<div class='col-6 story_content_2'>":"</div><div class='row'><div class='col-6 story_content'>"|ge;
+$data =~ s|<div class='story_content'>|(++$count % 2 == 0)?"<div class='col-sm-6 story_content_2'>":"</div><div class='row'><div class='col-sm-6 story_content'>"|ge;
 
 # Fix
 $data =~ s|<body>\s*</div>|<body><div class="container">|g;
