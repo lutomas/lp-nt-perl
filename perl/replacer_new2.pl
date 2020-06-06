@@ -2,15 +2,18 @@ use strict;
 use warnings;
 use diagnostics;
 
-#my $filename = './../full_1.html';
-#my $filenameOut = './../full_1_out.html';
+#my $filename = '../full_1.html';
+#my $filenameOut = '../full_1_out.html';
 my $filename = $ARGV[0];
 my $filenameOut = $ARGV[1];
 
 my $data = read_file($filename);
 my $count = 0;
 
-$data =~ s|<div class="_idGenObjectStyleOverride-1">|(++$count % 2 == 0)?'<div class="_idGenObjectStyleOverride-1 translation">':$&|ge;
+# MAKES TABLES
+$data =~ s|<body id="full_1" lang="en-GB">|'<body id="full_1" lang="en-GB"><table>'|ge;
+$data =~ s|<div class="_idGenObjectStyleOverride-1">|(++$count % 2 == 0)?'</td><td><div class="_idGenObjectStyleOverride-1 greek">':'<tr><td><div class="_idGenObjectStyleOverride-1 lit">'|ge;
+$data =~ s|</body>|'</td></tr></table>'|ge;
 
 write_file($filenameOut, $data);
 exit;

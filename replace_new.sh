@@ -6,5 +6,5 @@
 
 #perl replace.pl StoriesText2.html
 #perl replace_styles.pl
-perl perl/replacer_new1.pl
+perl perl/replacer_new2.pl  full_1.html full_1_out2.html
 #perl replace2.pl
