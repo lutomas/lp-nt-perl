@@ -7,12 +7,15 @@ function main(){
 	if (app.documents.length != 0){
 		mySetup();
 		var removedTextFrames = removeEmptyTextFrames();
-		var aligned = alignContent()
 		var removedPages = removeEmptyPages()
+		var aligned = alignContent()
+		var justifiedCount = justifyContent()
 		alert ("Results" +
 			"\nRemoved empty: " + removedTextFrames +
 			"\nRemoved pages: " + removedPages +
-			"\nAligned items: " + aligned)
+			"\nAligned items: " + aligned +
+			"\nJustified items: " + justifiedCount
+			)
 		
 	}
 	else{
@@ -26,11 +29,12 @@ function mySetup(){
 // Removes empty textFrames
 function removeEmptyTextFrames(){
 	var counter = 0;
+	var regex = /^[\s]*$/;
 	var spreads = app.activeDocument.spreads;
 	for (i = spreads.length -1; i >= 0 ; i--){
 		var myTextFrames = spreads[i].textFrames
 		for (j = myTextFrames.length - 1; j >= 0; j--)    {
-			if (myTextFrames[j].contents == ""){
+			if (myTextFrames[j].contents.match(regex)){
 				myTextFrames[j].remove();
 				counter++
 			}
@@ -39,21 +43,21 @@ function removeEmptyTextFrames(){
 	return counter
 }
 
-function removeEmptyTextFrames_org(){
-	var counter = 0;
-	var myStories = app.activeDocument.stories.everyItem().getElements();
-	for (i = myStories.length - 1; i >= 0; i--){
-		var myTextFrames = myStories[i].textContainers;
-		for (j = myTextFrames.length - 1; j >= 0; j--)    {
-			if (myTextFrames[j].contents == ""){
-				myTextFrames[j].remove();
-				counter++
-			}
-		}
-	}
+// function removeEmptyTextFrames_org(){
+// 	var counter = 0;
+// 	var myStories = app.activeDocument.stories.everyItem().getElements();
+// 	for (i = myStories.length - 1; i >= 0; i--){
+// 		var myTextFrames = myStories[i].textContainers;
+// 		for (j = myTextFrames.length - 1; j >= 0; j--)    {
+// 			if (myTextFrames[j].contents == ""){
+// 				myTextFrames[j].remove();
+// 				counter++
+// 			}
+// 		}
+// 	}
 
-	return counter
-}
+// 	return counter
+// }
 
 function removeEmptyPages() {
 	var counter = 0;
@@ -62,6 +66,19 @@ function removeEmptyPages() {
 		var elements = spreads[i].textFrames
 		if (elements.length == 0) {
 			spreads[i].remove()
+			counter++
+		}
+	}	
+	return counter
+}
+
+function justifyContent() {
+	var counter = 0;
+	var stories = app.activeDocument.stories;
+	for (i = stories.length -1; i >= 0 ; i--){
+		var paragraphs = stories[i].paragraphs
+		for (j=0; j<paragraphs.length; j++) {
+			paragraphs[j].justification=Justification.LEFT_ALIGN
 			counter++
 		}
 	}	
