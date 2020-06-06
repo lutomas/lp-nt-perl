@@ -36,3 +36,4 @@ inc/
 
 .idea
 *.html
+*-web-resources

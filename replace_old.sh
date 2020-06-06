@@ -5,5 +5,6 @@
 #perl -i.bak -pe '$count = 0; s/(story_content)/(++$count % 2 == 0)?"STORY":$&/ge;' in.txt
 
 #perl replace.pl StoriesText2.html
-perl replace_styles.pl
+#perl replace_styles.pl
+perl perl/replacer_old2.pl
 #perl replace2.pl

@@ -2,12 +2,12 @@ use strict;
 use warnings;
 use diagnostics;
 
-my $filename = 'StoriesText_2.html';
-my $filenameOut = 'StoriesText_21.html';
+my $filename = '../StoriesText_2.html';
+my $filenameOut = '../StoriesText_21.html';
 
 my $data = read_file($filename);
 my $count = 0;
-$data =~ s|<style>.*</style>|<link href="lp_neo.css" rel="stylesheet" type="text/css">\n<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">|sm;
+$data =~ s|<style>.*</style>|<link href="css/lp_neo.css" rel="stylesheet" type="text/css">\n<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">|sm;
 
 # Remove empty lines
 #$data =~ s|<div class='story_content'><span style="font-family:'Palemonas';font-size:8.00pt;"> </span><span style="font-family:'Palemonas';font-size:10.50pt;"><br><br></span></div>||g;
