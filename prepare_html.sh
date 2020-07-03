@@ -4,7 +4,9 @@
 
 #perl -i.bak -pe '$count = 0; s/(story_content)/(++$count % 2 == 0)?"STORY":$&/ge;' in.txt
 
-#perl replace.pl StoriesText2.html
-#perl replace_styles.pl
-perl perl/replacer_full_nt.pl  full_nt.html full_nt_table.html
+echo "Prepare HTML table..."
+in=full_nt.html
+out=full_nt_table.html
+perl perl/prepare_html_table.pl  $in  $out
+echo "PREPARED HTML: $out"
 #perl replace2.pl

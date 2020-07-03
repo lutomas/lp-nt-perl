@@ -4,7 +4,7 @@
 - document called 'full_nt.html'
 
 # Run
-```./prepare_html.sh``` - output will be `full_nt_table.html`
+```./prepare.sh``` - will create HTML in table structure.
 
 # Indesign halp
 API: 
