@@ -11,7 +11,7 @@ my $data = read_file($filename);
 my $count = 0;
 
 # MAKES TABLES
-$data =~ s|<body id="full_3" lang="en-GB">|'<body id="full_1" lang="en-GB"><table>'|ge;
+$data =~ s|<body id="full_nt" lang="en-GB">|'<body id="full_nt" lang="en-GB"><table>'|ge;
 #$data =~ /"* Rengėjas ne originalą atkuria, bet derina turimų Evangelijų įvykių tvarką: Jono Evangelijoje „žydai“ reiškia būtent tautą!"/;
 $data =~ s|<div class="_idGenObjectStyleOverride-1">|(++$count % 2 == 0)?'</td><td><div class="_idGenObjectStyleOverride-1 lit">':'<tr class="border_bottom"><td style="color:red">'.$count.'</td><td><div class="_idGenObjectStyleOverride-1 greek">'|ge;
 $data =~ s|</body>|'</td></tr></table>'|ge;
