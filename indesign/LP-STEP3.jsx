@@ -10,6 +10,7 @@ function main() {
 				+ "\nExport to HTML!"
 				+ "\nSTEP3:"
 				+ "\nFile>Export>HTML (select)"
+				+ "\nName it: 'full_nt'"
 			)
 			return
 	}
