@@ -1,5 +1,5 @@
 prepare-html:
-	./prepare_index.sh
-	./prepare_css_font_size.sh
-	./prepare_html.sh
-	./prepare_html_font_size.sh
+	./css_font_size.sh
+	./index.sh
+	./table.sh
+	./table_same_size.sh
