@@ -37,4 +37,4 @@ inc/
 *-web-resources
 *.indd
 
-releases
+releases/*
