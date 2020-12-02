@@ -10,12 +10,7 @@ my $count = 0;
 my $lineCount = 0;
 
 # MAKES TABLES
-$data =~ s|<body id="full_nt" lang="en-GB">|'<body id="full_nt" lang="en-GB"><table>'|ge;
-#$data =~ /"* Rengėjas ne originalą atkuria, bet derina turimų Evangelijų įvykių tvarką: Jono Evangelijoje „žydai“ reiškia būtent tautą!"/;
-$data =~ s|<div class="_idGenObjectStyleOverride-1">|(++$count % 2 == 0)?'</td><td><div class="_idGenObjectStyleOverride-1 lit">':'<tr class="border_bottom"><td style="color:red">'.++$lineCount.'</td><td><div class="_idGenObjectStyleOverride-1 greek">'|ge;
-$lineCount = 0;
-$data =~ s|<td><div class="_idGenObjectStyleOverride-1 lit">|'<td style="color:red">'.++$lineCount.'</td><td><div class="_idGenObjectStyleOverride-1 lit">'|ge;
-$data =~ s|</body>|'</td></tr></table>'|ge;
+$data =~ s|</head>|'<style>.greek{display:none}.greek_count{display:none}.lit_count{display:none}</style></head>'|ge;
 
 write_file($filenameOut, $data);
 exit;

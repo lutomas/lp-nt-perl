@@ -5,7 +5,7 @@
 #perl -i.bak -pe '$count = 0; s/(story_content)/(++$count % 2 == 0)?"STORY":$&/ge;' in.txt
 
 echo "Prepare HTML table..."
-in=full_nt.html
+in=full_nt_table_same_font_size.html
 out=full_nt_table_greek.html
 perl perl/prepare_html_table_greek.pl  $in  $out
 echo "PREPARED HTML: $out"
