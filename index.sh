@@ -6,7 +6,7 @@ cat > $out << EOF
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>full nt</title>
+    <title>full nt INDEX</title>
 </head>
 <body>
     <a href="full_nt.html">Kaip in design</a><br/>
