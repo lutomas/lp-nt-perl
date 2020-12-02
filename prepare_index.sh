@@ -1,6 +1,7 @@
 #!/bin/sh
 
-cat > full_nt_index.html << EOF
+out=full_nt_index.html
+cat > $out << EOF
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,4 +16,4 @@ cat > full_nt_index.html << EOF
 </html>
 EOF
 
-echo "Index file created"
+echo "PREPARED INDEX FILE: $out"
