@@ -1,6 +1,6 @@
 #!/bin/sh
 
-out=full_nt_index.html
+out=gen_index.html
 cat > $out << EOF
 <!DOCTYPE html>
 <html lang="en">
