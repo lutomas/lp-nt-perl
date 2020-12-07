@@ -10,7 +10,7 @@ my $count = 0;
 my $lineCount = 0;
 
 # MAKES TABLES
-$data =~ s|<body id="full_nt" lang="en-GB">|'<body id="full_nt" lang="en-GB"><table>'|ge;
+$data =~ s|<body id="full_nt" lang="en-GB">|'<body id="full_nt" lang="en-GB"><table><tr><td></td><td></td><td></td><td></td>'|ge;
 # $data =~ s|<p>|''|ge;
 # $data =~ s|</p>|''|ge;
 #$data =~ /"* Rengėjas ne originalą atkuria, bet derina turimų Evangelijų įvykių tvarką: Jono Evangelijoje „žydai“ reiškia būtent tautą!"/;
@@ -31,10 +31,10 @@ $data =~ s|<div class="_idGenObjectLayout-1">\s*<div id="_idContainer\d*" class=
 
 
 # $data =~ s|<div class="_idGenObjectStyleOverride-1">|(++$count % 2 == 0)?'</td><td><div class="_idGenObjectStyleOverride-1 lit">':'<tr class="border_bottom"><td class="greek_count" style="color:red">'.++$lineCount.'</td><td><div class="_idGenObjectStyleOverride-1 greek">'|ge;
-$data =~ s|<div id="_idContainer\d*" class="_idGenObjectStyleOverride-1">|(++$count % 2 == 0)?'</td><td><div class="_idGenObjectStyleOverride-1 lit">':'<tr class="border_bottom"><td class="greek_count" style="color:red">'.++$lineCount.'</td><td><div class="_idGenObjectStyleOverride-1 greek">'|ge;
+$data =~ s|<div id="_idContainer\d*" class="_idGenObjectStyleOverride-1">|(++$count % 2 == 0)?'</td><td><div class="_idGenObjectStyleOverride-1 lit">':'</tr><tr class="border_bottom"><td class="greek_count" style="color:red">'.++$lineCount.'</td><td><div class="_idGenObjectStyleOverride-1 greek">'|ge;
 $lineCount = 0;
 $data =~ s|<td><div class="_idGenObjectStyleOverride-1 lit">|'<td class="lit_count" style="color:red">'.++$lineCount.'</td><td><div class="_idGenObjectStyleOverride-1 lit">'|ge;
-$data =~ s|</body>|'</td></tr></table>'|ge;
+$data =~ s|</body>|'</td></tr></table></body>'|ge;
 
 write_file($filenameOut, $data);
 exit;
