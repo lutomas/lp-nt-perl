@@ -14,7 +14,24 @@ $data =~ s|<body id="full_nt" lang="en-GB">|'<body id="full_nt" lang="en-GB"><ta
 # $data =~ s|<p>|''|ge;
 # $data =~ s|</p>|''|ge;
 #$data =~ /"* Rengėjas ne originalą atkuria, bet derina turimų Evangelijų įvykių tvarką: Jono Evangelijoje „žydai“ reiškia būtent tautą!"/;
-$data =~ s|<div class="_idGenObjectStyleOverride-1">|(++$count % 2 == 0)?'</td><td><div class="_idGenObjectStyleOverride-1 lit">':'<tr class="border_bottom"><td class="greek_count" style="color:red">'.++$lineCount.'</td><td><div class="_idGenObjectStyleOverride-1 greek">'|ge;
+
+# REMOVE EMPTY #1 e.g
+# <div id="_idContainer089" class="_idGenObjectStyleOverride-1">
+#     <p><span class="CharOverride-3"> </span></p>
+#     </div>
+$data =~ s|<div id="_idContainer\d*" class="_idGenObjectStyleOverride-1">\s*<p><span class="CharOverride-3">\s*</span></p>\s*</div>|''|ge;
+
+# REMOVE EMPTY #2 e.g
+# <div class="_idGenObjectLayout-1">
+#     <div id="_idContainer119" class="_idGenObjectStyleOverride-1">
+#     </div>
+#     </div>
+# $data =~ s|<div class="_idGenObjectLayout-1">\s*<div id="_idContainer\d*" class="_idGenObjectStyleOverride-1">\s*</div>s*</div>|''|ge;
+$data =~ s|<div class="_idGenObjectLayout-1">\s*<div id="_idContainer\d*" class="_idGenObjectStyleOverride-1">\s*</div>\s*</div>|''|ge;
+
+
+# $data =~ s|<div class="_idGenObjectStyleOverride-1">|(++$count % 2 == 0)?'</td><td><div class="_idGenObjectStyleOverride-1 lit">':'<tr class="border_bottom"><td class="greek_count" style="color:red">'.++$lineCount.'</td><td><div class="_idGenObjectStyleOverride-1 greek">'|ge;
+$data =~ s|<div id="_idContainer\d\d\d" class="_idGenObjectStyleOverride-1">|(++$count % 2 == 0)?'</td><td><div class="_idGenObjectStyleOverride-1 lit">':'<tr class="border_bottom"><td class="greek_count" style="color:red">'.++$lineCount.'</td><td><div class="_idGenObjectStyleOverride-1 greek">'|ge;
 $lineCount = 0;
 $data =~ s|<td><div class="_idGenObjectStyleOverride-1 lit">|'<td class="lit_count" style="color:red">'.++$lineCount.'</td><td><div class="_idGenObjectStyleOverride-1 lit">'|ge;
 $data =~ s|</body>|'</td></tr></table>'|ge;
