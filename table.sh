@@ -6,7 +6,7 @@
 
 echo "Prepare HTML table..."
 in=full_nt.html
-out=full_nt_table.html
+out=gen_nt_table.html
 perl perl/prepare_html_table.pl  $in  $out
 echo "PREPARED HTML: $out"
 #perl replace2.pl
