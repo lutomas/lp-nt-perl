@@ -31,7 +31,7 @@ $data =~ s|<div class="_idGenObjectLayout-1">\s*<div id="_idContainer\d*" class=
 
 
 # $data =~ s|<div class="_idGenObjectStyleOverride-1">|(++$count % 2 == 0)?'</td><td><div class="_idGenObjectStyleOverride-1 lit">':'<tr class="border_bottom"><td class="greek_count" style="color:red">'.++$lineCount.'</td><td><div class="_idGenObjectStyleOverride-1 greek">'|ge;
-$data =~ s|<div id="_idContainer\d\d\d" class="_idGenObjectStyleOverride-1">|(++$count % 2 == 0)?'</td><td><div class="_idGenObjectStyleOverride-1 lit">':'<tr class="border_bottom"><td class="greek_count" style="color:red">'.++$lineCount.'</td><td><div class="_idGenObjectStyleOverride-1 greek">'|ge;
+$data =~ s|<div id="_idContainer\d*" class="_idGenObjectStyleOverride-1">|(++$count % 2 == 0)?'</td><td><div class="_idGenObjectStyleOverride-1 lit">':'<tr class="border_bottom"><td class="greek_count" style="color:red">'.++$lineCount.'</td><td><div class="_idGenObjectStyleOverride-1 greek">'|ge;
 $lineCount = 0;
 $data =~ s|<td><div class="_idGenObjectStyleOverride-1 lit">|'<td class="lit_count" style="color:red">'.++$lineCount.'</td><td><div class="_idGenObjectStyleOverride-1 lit">'|ge;
 $data =~ s|</body>|'</td></tr></table>'|ge;
